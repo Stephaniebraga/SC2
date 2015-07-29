@@ -6,9 +6,9 @@
 clc;
 close;
 clear;
-exec('/home/stephanie/Documentos/SC2/SC2/OnOff.sci');
-exec('/home/stephanie/Documentos/SC2/SC2/embaralhador.sci');
-exec('/home/stephanie/Documentos/SC2/SC2/desembaralhador.sci');
+exec('OnOff.sci');
+exec('embaralhador.sci');
+exec('desembaralhador.sci');
 
 //opcao=input("Para transmissão sem erro digite - 1%nPara transmissão com erro digite - 2\n");
 x=[1 0 1 0 1 0 1 0 0 0 0 0 1 1 1];  //Sequência de bits
