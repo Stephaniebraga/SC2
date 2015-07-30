@@ -8,13 +8,13 @@ close;
 clear;
 //x=[1 1 1 0 1 1 0 0 1 1];  //Sequência de bits
 
-b=rand(1,10000); //Gera matriz com valores aleatórios entre 0 e 1.
+b=rand(1,100); //Gera matriz com valores aleatórios entre 0 e 1.
 x=round(b);  //arredonda os valores para 0 ou 1.
 
 nx=size(x,2);     //retorna o número de colunas de x
 
 bitResolution=10; //numero de amostras por cada simbolo da sequencia
-bitTime=0.01;  //Tempo de bit
+bitTime=1;  //Tempo de bit
 
 //matriz de 3 linhas que indica o pulso a ser usado em cada simbolo. 
 p=[ones(1,bitResolution);ones(1,bitResolution)*-1];
@@ -41,9 +41,7 @@ end
 //mostra o codigo de linha bipolar NRZ
 subplot(2,1,1);
 title('polar NRZ');
-//ylabel('biplolar NRZ');
 plot(timeAxis,y, "-o");
-//plot2d3('gnn',timeAxis,y);
 xgrid;
 
 //calcula o espectro de potência
