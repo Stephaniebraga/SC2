@@ -1,3 +1,9 @@
+//Embaralha um sinal
+//Recebe: x - sinal a ser embaralhado
+//       firtD - Numero de atrasos do primeiro estágio
+//       secD - Numero de atrasos do primeiro estágio
+//Retorna: T - Sinal embaralhado
+
 function[T] = embaralhador(x, firstD, secD)
 T=x(1,1:firstD);
 nx=size(x,2);

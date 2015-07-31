@@ -1,3 +1,9 @@
+//Desembaralha um sinal
+//Recebe: T - sinal a ser desembaralhado
+//       firtD - Numero de atrasos do primeiro estágio
+//       sescD - Numero de atrasos do primeiro estágio
+//Retorna: S - Sinal desembaralhado
+
 function[S] = desembaralhador(T, firstD, secD)
 S=T(1,1:firstD);
 nT=size(T,2);

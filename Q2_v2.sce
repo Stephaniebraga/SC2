@@ -1,7 +1,7 @@
 //Trabalho de Simulação
 //Disciplina: Sistemas de Comunicação II
 //Dupla: Stéphanie Braga e Hugaleno
-//Questão 2  Embaralhador e Desembaralhador de dados
+//Questão 2 - Embaralhador e Desembaralhador de dados
 
 clc;
 close;
@@ -10,11 +10,10 @@ exec('OnOff.sci');
 exec('embaralhador.sci');
 exec('desembaralhador.sci');
 
-//opcao=input("Para transmissão sem erro digite - 1%nPara transmissão com erro digite - 2\n");
-x=[1 0 1 0 1 0 1 0 0 0 0 0 1 1 1];  //Sequência de bits
-
-//b=rand(1,10000); //Gera matriz com valores aleatórios entre 0 e 1.
-//x=round(b);  //arredonda os valores para 0 ou 1.
+//gera sinal
+N=35;
+b=rand(1,N); //Gera matriz com valores aleatórios entre 0 e 1.
+x=round(b);  //arredonda os valores para 0 ou 1.
 
 nx=size(x,2);     //retorna o número de colunas de x
 
@@ -30,24 +29,22 @@ y=zeros(1,nx*bitResolution);
 //eixo de tempo para plotagem
 timeAxis=[0:size(y,2)-1]*(bitTime/bitResolution);
 
-
-
-//Gera a Sinalização On_Off de x
+//Gera a Sinalização On_Off apartir de x
 y=On_off(x,bitResolution,p);
 
 //Embaralhador
 firstD=3; //Deslocamento Parcial
 secD=5;   //Deslocamento final
-T=embaralhador(x,firstD,secD);
+T=embaralhador(x,firstD,secD); 
 
-//gera o sinal embaralhado
+//gera o sinal embaralhado apartir de T
 y2=On_off(T,bitResolution,p);
-
 
 //gera erro de transmissão
 TErro=T;
 yerro=y2;
-bitErro=(ceil(rand(1,1)*10));
+bitErro=(ceil(rand(1,1)*10)); //pega um valor randômico para o bit de erro
+//Inverte o bit
 if(T(1,bitErro)==1)
     TErro(bitErro)=0;
     SbitErro=zeros(1,bitResolution);
@@ -60,17 +57,19 @@ start = 1+(bitResolution*(bitErro-1));
 fim = bitErro*bitResolution;
 yerro(1,start:fim) = SbitErro;
 
-//Desembaralhador do sinal correto
+//Desembaralha o sinal correto
 S=desembaralhador(T,firstD,secD);
 
 //gera o sinal desembaralhado
 y3=On_off(S,bitResolution,p);
 
-//Desembaralhador do sinal com erro
+//Desembaralha do sinal com erro
 SErro=desembaralhador(TErro,firstD,secD);
 
 //gera o sinal desembaralhado com erro
 y4=On_off(SErro,bitResolution,p);
+
+//**Plotagens**//
 
 //mostra a Sinalização On-Off NRZ
 subplot(5,1,1);

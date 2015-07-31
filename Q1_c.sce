@@ -6,9 +6,10 @@
 clc;
 close;
 clear;
-//x=[1 1 1 0 1 1 0 0 1 1];  //Sequência de bits
 
-b=rand(1,1000); //Gera matriz com valores aleatórios entre 0 e 1.
+//gera sinal
+N=100;
+b=rand(1,N); //Gera matriz com valores aleatórios entre 0 e 1.
 x=round(b);  //arredonda os valores para 0 ou 1.
 
 nx=size(x,2);     //retorna o número de colunas de x
@@ -25,6 +26,7 @@ y=zeros(1,nx*bitResolution);
 //eixo de tempo para plotagem
 timeAxis=[0:size(y,2)-1]*(bitTime/bitResolution);
 
+//gera sinalização bipolar NRZ
 aux=1;
 i=1;
 while i< nx+1
@@ -44,18 +46,18 @@ while i< nx+1
     i=i+1;
 end
 
-//mostra o codigo de linha bipolar NRZ
-subplot(2,1,1);
-title('Biplolar NRZ');
-//ylabel('biplolar NRZ');
-plot(timeAxis,y, "-o");
-//plot2d3('gnn',timeAxis,y);
-xgrid;
-
 //calcula o espectro de potência
 sy=abs(fft(y));
 sy=fftshift(sy);
 sy=sy.*sy;
+
+//***Plotagens***//
+//mostra o codigo de linha bipolar NRZ
+subplot(2,1,1);
+title('Biplolar NRZ');
+plot(timeAxis,y, "-o");
+xgrid;
+
 //mostra o espectro de potência
 subplot(2,1,2);
 title('Espectro de Potência');
