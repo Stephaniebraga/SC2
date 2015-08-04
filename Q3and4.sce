@@ -131,28 +131,33 @@ figure;
 //Mostra o Diagrama de olho do sinal antes do canal
 subplot(3,1,1);
 title('Diag. de olho - sinal antes do canal');
-p1 = 1; p2 = 3; 
-for k=1:25
-    plot(1:3,x(p1:p2));
-    p1 = p2; p2 = p1 + 2;
+l1 = 1; l2 = 3; dif=l2-l1;
+t1=l1;t2=l2;
+lim=floor(N/l2);
+for k=1:lim
+    plot(t1:t2,x(l1:l2));
+    l1 = l2; l2 = l1 + dif;
 end
 
 //Mostra o Diagrama de olho do sinal depois do canal
 subplot(3,1,2);
 title('Diag. de olho - sinal depois do canal');
-p1 = 1; p2 = 3; 
-for k=1:25
-    plot(1:3,y(p1:p2));
-    p1 = p2; p2 = p1 + 2;
+l1 = 1; l2 = 3; dif=l2-l1;
+t1=l1;t2=l2;
+lim=floor(N/l2);
+for k=1:lim
+    plot(t1:t2,y(l1:l2));
+    l1 = l2; l2 = l1 + dif;
 end
 
 //Mostra o Diagrama de olho do sinal após Equalizador ZF
 subplot(3,1,3);
 title('Diag. de olho - Sinal depois do Eq. ZF');
-p1 = 1; p2 = 3; 
-for k=1:25
-    plot(1:3,z(p1:p2));
-    p1 = p2; p2 = p1 + 2;
+l1 = 1; l2 = 3; dif=l2-l1;
+t1=l1;t2=l2;
+lim=floor(N/l2);
+for k=1:lim
+    plot(t1:t2,z(l1:l2));
+    l1 = l2; l2 = l1 + dif;
 end
-xgrid;
 
